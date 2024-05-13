@@ -84,6 +84,8 @@ model Permissions {
 //   Agency Agency @relation(fields: [agencyId], references: [id], onDelete: Cascade)
 // @@index([agencyId])
 // }
+
+
 model Agency {
   id               String                @id @default(uuid())
   connectAccountId String?               @default("")
@@ -109,7 +111,7 @@ model Agency {
   Subscription     Subscription?
   AddOns           AddOns[]
 }
-
+// agency has multiple subaccounts that;s why we use an array
 model SubAccount {
   id               String                    @id @default(uuid())
   connectAccountId String?                   @default("")
@@ -154,6 +156,10 @@ model Tag {
 
   @@index([subAccountId])
 }
+
+// entire convon board
+// each pipeline can have lanes
+// each lane can have tickets
 
 model Pipeline {
   id           String     @id @default(uuid())
@@ -265,7 +271,12 @@ model Action {
 
   @@index([automationId])
 }
-
+// multiple leads coming to the sub-accounts from the webpage
+// funnel is basically is a website, each funnel has a funnel page
+// agecny sidebaroption is for the agency owner to hide the options from the sub-accounts
+// invitation to send other users
+// notification belong to agency or sub-accounts
+// plan is basically pricing plan
 model Contact {
   id           String   @id @default(uuid())
   name         String
